@@ -1,0 +1,15 @@
+/* 重置浏览器默认样式：给body、div、dl、dt、dd、ul、ol、li、h1~h6、pre、form、fieldset、legend、input、textarea、button、p、blockquote、th、td这些常用标签
+   统一设置外边距(margin)为0、内边距(padding)为0，避免不同浏览器默认边距不一致导致页面布局乱 */
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, legend, input, textarea, button, p, blockquote, th, td{margin: 0;padding: 0;}
+
+/* 去掉li标签的默认列表样式：比如默认的小圆点、数字序号等，让列表没有多余的标记，方便自定义样式 */
+li{list-style-type:none;}
+
+/* 去掉a标签的默认下划线：超链接默认有下划线，重置后可以自己决定是否加下划线，更美观 */
+a{text-decoration: none;}
+
+/* 让img图片垂直居中：解决图片和文字并排时，图片默认偏上/偏下的问题，对齐更整齐 */
+img{vertical-align:middle;}
+
+/* 让body标签里的所有内容整体水平居中：页面内容默认在中间显示，不用单独给每个容器加居中样式 */
+body{text-align: center;}

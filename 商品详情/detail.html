@@ -1,0 +1,150 @@
+<!-- 告诉浏览器这是HTML5文档，按HTML5的规则解析页面，避免兼容问题 -->
+<!DOCTYPE html>
+<!-- html根标签：整个网页的最外层容器，lang="en"表示页面语言是英文（可改成zh-CN表示中文） -->
+<html lang="en">
+<!-- head标签：存放页面的配置信息（不会显示在页面上），比如编码、适配、样式文件引入 -->
+<head>
+    <!-- meta标签：设置页面字符编码为UTF-8，解决中文乱码的问题 -->
+    <meta charset="UTF-8">
+    <!-- meta标签：强制IE浏览器用最新的内核渲染页面，避免老版本IE显示异常 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- meta标签：设置移动端适配，页面宽度等于手机屏幕宽度，初始缩放比例1:1 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- title标签：浏览器标签栏显示的标题，当前是默认值Document，可改成“SprayGround棉服详情页” -->
+    <title>Document</title>
+    
+    <!-- link标签：引入全局重置样式表reset.css，清除浏览器自带的默认样式（比如默认边距、列表圆点），让不同浏览器显示效果一致 -->
+    <link rel="stylesheet" href="./css/reset.css">
+
+    <!-- link标签：引入详情页专属样式表detail.css，控制这个页面的布局、颜色、大小等外观 -->
+    <link rel="stylesheet" href="./css/detail.css">
+<!-- head标签结束：配置信息区域结束 -->
+</head>
+
+<!-- body标签：用户能看到的所有页面内容都放在这个标签里 -->
+<body>
+
+    <!-- wrap盒子：页面内容的总容器，用来统一控制页面宽度、居中对齐（样式在detail.css里） -->
+    <div class="wrap">
+        <!-- product-intro盒子：商品介绍的总容器，包含左侧图片区和右侧商品信息区 -->
+        <div class="product-intro">
+            <!-- preview-wrap盒子：左侧商品图片预览区（主图+放大镜+缩略图） -->
+            <div class="preview-wrap">
+                <!-- main-img盒子：商品主图展示区，包含放大镜功能的核心区域 -->
+                <div class="main-img">
+                    <!-- 商品主图：src是图片路径（当前是第一张服装图），alt是图片加载失败时显示的文字，class="img"给CSS定位用 -->
+                    <img src="./images/yifu1.jpg" alt="" class="img">
+                    <!-- zoom-pup盒子：放大镜的小滑块（鼠标移到主图上时显示，用来定位放大的区域） -->
+                    <div class="zoom-pup"></div>
+                    <!-- zoom-div盒子：放大镜的大图展示区（鼠标移到主图时，这里显示对应位置的放大细节图） -->
+                    <div class="zoom-div">
+                        <!-- 放大镜的大图：和主图是同一张，通过CSS放大显示细节，src指定图片路径 -->
+                        <img src="./images/yifu1.jpg" alt="">
+                    </div>
+                </div>
+                <!-- spec-list盒子：商品缩略图列表区，包含左右切换箭头和缩略图 -->
+                <div class="spec-list">
+                    <!-- prev按钮：缩略图左切换箭头，href="javascript:;"表示点击不跳转，只触发JS切换图片的功能 -->
+                    <a href="javascript:;" class="prev"></a>
+                    <!-- next按钮：缩略图右切换箭头，功能同上，点击切换下一张缩略图 -->
+                    <a href="javascript:;" class="next"></a>
+                    <!-- spec-items盒子：缩略图列表的容器，控制缩略图的排版和滚动 -->
+                    <div class="spec-items">
+                        <!-- ul列表：存放所有缩略图，HTML规范里图片列表用ul/li更合理 -->
+                        <ul>
+                            <!-- li列表项：第一张缩略图，class="img-hover"表示默认选中/鼠标悬浮的高亮样式 -->
+                            <li class="img-hover">
+                                <!-- 第一张缩略图：src指定图片路径，alt为备用文字（可填“棉服图片1”） -->
+                                <img src="./images/yifu1.jpg" alt="">
+                            </li>
+                            <!-- li列表项：第二张缩略图 -->
+                            <li>
+                                <img src="./images/yifu2.jpg" alt="">
+                            </li>
+                            <!-- li列表项：第三张缩略图 -->
+                            <li>
+                                <img src="./images/yifu3.jpg" alt="">
+                            </li>
+                            <!-- li列表项：第四张缩略图 -->
+                            <li>
+                                <img src="./images/yifu4.jpg" alt="">
+                            </li>
+                            <!-- li列表项：第五张缩略图 -->
+                            <li>
+                                <img src="./images/yifu5.jpg" alt="">
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- itemInfo-wrap盒子：右侧商品信息区（标题、价格、配送、数量、购买按钮等） -->
+            <div class="itemInfo-wrap">
+                <!-- blank盒子：商品基础信息容器，存放标题、价格、配送等核心信息 -->
+                <div class="blank">
+                    <!-- blank-text盒子：商品标题，显示商品完整名称，让用户知道买的是什么 -->
+                    <div class="blank-text">SprayGround明星同款毛毛棉服男外套秋冬鲨鱼嘴男女情侣毛绒棉衣</div>
+                    <!-- blank-text-desc盒子：商品附加说明，显示“可开发票”，告知用户额外服务 -->
+                    <div class="blank-text-desc">可开发票</div>
+                    <!-- desc-price盒子：价格信息容器，包含折后价、原价、销量 -->
+                    <div class="desc-price">
+                        <!-- blank-price盒子：折后价格，突出显示优惠后的价格“¥399” -->
+                        <div class="blank-price">折后¥399</div>
+                        <!-- blank-price2盒子：原价+销量，<del>是删除线（显示优惠前699元），&nbsp;&nbsp;是空格，<span>包裹销量方便CSS样式控制 -->
+                        <div class="blank-price2"><del>优惠前699元</del>&nbsp;&nbsp;已售<span>3000+</span></div>
+                    </div>
+                    <!-- xijie盒子：商品详情信息容器，包含配送、保障、颜色、数量说明 -->
+                    <div class="xijie">
+                        <!-- peisong盒子：配送标签，显示“配 送：”，标注后续的配送信息 -->
+                        <div class="peisong">配&nbsp;&nbsp;送：</div>
+                        <!-- peisong2盒子：配送详情，显示发货地、收货地、发货提示，让用户知道配送相关信息 -->
+                        <div class="peisong2">浙江杭州  至  北京海淀区  春节快递紧张，先买先发货</div>
+                        
+                        <!-- baozhang盒子：保障标签，显示“保 障：”，标注后续的保障信息 -->
+                        <div class="baozhang">保&nbsp;&nbsp;障：</div>
+                        <!-- baozhang2盒子：保障详情，显示支持的支付方式，告知用户支付保障 -->
+                        <div class="baozhang2">MasterCard Visa</div>
+                        
+                        <!-- blank-color盒子：颜色标签，显示“颜 色：xxxxxx”，xxxxxx是占位符，后续可替换为实际颜色（如黑色、白色） -->
+                        <div class="blank-color">颜&nbsp;&nbsp;色：xxxxxx</div>
+                        <!-- blank-color2盒子：颜色选择区（空盒子），后续可加颜色选项按钮（如黑色、白色按钮） -->
+                        <div class="blank-color2"></div>
+                        
+                        <!-- blank-number盒子：数量标签，显示“数 量：”，标注后续的数量选择区 -->
+                        <div class="blank-number">数&nbsp;&nbsp;量：</div>
+                    </div>
+                </div>
+                
+                <!-- choose-amount盒子：购买数量选择区，包含输入框、减号、加号按钮 -->
+                <div class="choose-amount">
+                    <!-- buy-num输入框：显示/输入购买数量，value="1"表示默认买1件 -->
+                    <input type="text" class="buy-num" value="1">
+                    <!-- reduce按钮：减号按钮，class="disabled"表示默认禁用（数量为1时不能再减），点击触发JS减数量的功能 -->
+                    <a href="javascript:;" class="reduce disabled">-</a>
+                    <!-- add按钮：加号按钮，点击触发JS加数量的功能 -->
+                    <a href="javascript:;" class="add">+</a>
+                </div>
+                
+                <!-- gouwu盒子：购买/加购按钮容器，包含立即购买和加入购物车按钮 -->
+                <div class="gouwu">
+                    <!-- buy盒子：立即购买按钮容器，里面放购买图标 -->
+                    <div class="buy">
+                        <!-- 立即购买图标：src指定图标路径，alt为备用文字（可填“立即购买”） -->
+                        <img src="images/buy.png" alt=""/>
+                    </div>
+                    <!-- buycar盒子：加入购物车按钮容器，里面放购物车图标 -->
+                    <div class="buycar">
+                        <!-- 加入购物车图标：src指定图标路径，alt为备用文字（可填“加入购物车”） -->
+                        <img src="images/buycar.png" alt=""/>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- track盒子：预留的空白区域，后续可添加物流轨迹、用户评价、售后保障等内容 -->
+            <div class="track"></div>
+        </div>
+    </div>
+    
+    <!-- script标签：引入详情页的交互JS文件，实现放大镜、图片切换、数量加减等功能 -->
+    <script src="./js/detail.js"></script>
+</body>
+</html>

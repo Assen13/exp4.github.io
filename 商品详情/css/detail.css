@@ -1,0 +1,356 @@
+/* 页面总容器：控制页面宽度为1210px，margin:0 auto让容器水平居中，页面内容不跑偏 */
+.wrap{
+    width: 1210px;
+    margin: 0 auto;
+}
+
+/* 商品介绍总容器：上下各留10px外边距，和其他模块分开，视觉更整洁 */
+.product-intro{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+/* 左侧图片预览区：宽352px、高500px，背景浅灰色，底部内边距15px，左浮动（和右侧信息区并排） */
+.preview-wrap{
+    width: 352px;
+    height: 500px;
+	background-color: #f1f1f1; /* 背景色浅灰，区分区域 */
+    /*background-color: palegoldenrod;*/ /* 注释的备用背景色，调试用 */
+    padding-bottom: 15px; /* 底部内边距，防止内容贴底 */
+    float: left; /* 左浮动，和右侧itemInfo-wrap并排显示 */
+}
+
+/* 右侧商品信息区：宽590px、高800px，左外边距30px、右外边距24px，背景白色，左浮动（和左侧图片区并排） */
+.itemInfo-wrap{
+    width: 590px;
+    height: 800px;
+    margin-left: 30px; /* 和左侧图片区拉开距离 */
+    margin-right: 24px; /* 和右侧track区拉开距离 */
+	background-color: #ffffff; /* 背景白色，显示商品信息更清晰 */
+    /*background-color: paleturquoise;*/ /* 注释的备用背景色，调试用 */
+    float: left; /* 左浮动，和左侧preview-wrap并排 */
+}
+
+/* 最右侧预留区（物流/评价等）：宽210px、高600px，左浮动（和中间信息区并排） */
+.track{
+    width: 210px;
+    height: 600px;
+   /* background-color: pink;*/ /* 注释的备用背景色，调试用 */
+    float: left; /* 左浮动，和中间itemInfo-wrap并排 */
+}
+
+/* 主图容器：相对定位（给内部绝对定位元素当参考），宽350px、高350px，边框1px浅灰，底部外边距20px，背景浅灰 */
+.main-img{
+    position: relative; /* 相对定位，作为zoom-pup/zoom-div的定位参考 */
+    width: 350px;
+    height: 350px;
+    border: 1px solid #eee; /* 浅灰色边框，区分主图区域 */
+    margin-bottom: 20px; /* 和下方缩略图区拉开距离 */
+	background-color: #eee; /* 背景浅灰，图片加载慢时显示 */
+    /*background-color: skyblue;*/ /* 注释的备用背景色，调试用 */
+}
+/* 主图里的img标签：宽高和容器一致（350px），填满主图容器 */
+.main-img img{
+	width: 350px;
+	height: 350px;
+}
+/* 备用的图片hover样式：宽度100%（当前未使用，保留原代码） */
+.img-hover-tu{
+	width: 100%;
+}
+/* 缩略图列表容器：相对定位（给左右箭头定位），宽352px、高54px，底部外边距18px */
+.spec-list{
+    position: relative; /* 相对定位，作为prev/next的定位参考 */
+    width: 352px;
+    height: 54px;
+    margin-bottom: 18px; /* 和下方区域拉开距离 */
+    /* background-color: purple; */ /* 注释的备用背景色，调试用 */
+}
+
+/* 缩略图左右箭头通用样式：绝对定位（基于spec-list），top50%+margin-top-16px实现垂直居中，宽22px、高32px，鼠标指针变手型，背景色红（被背景图覆盖），背景图引用雪碧图且不重复 */
+.prev, .next{
+    position: absolute; /* 绝对定位，相对于spec-list */
+    top: 50%; /* 顶部对齐父容器50%位置 */
+    margin-top: -16px; /* 向上偏移16px（自身高度一半），实现垂直居中 */
+    width: 22px;
+    cursor: pointer; /* 鼠标移上去变手型，提示可点击 */
+    height: 32px;
+    background-color: red; /* 备用背景色，被雪碧图覆盖 */
+    background: url(./../images/__sprite.png) no-repeat; /* 引用雪碧图，背景不重复 */
+}
+
+/* 左箭头：定位到spec-list最左侧，雪碧图位置偏移(0,-54px)，显示左箭头图标 */
+.prev{
+    left: 0; /* 左侧对齐父容器 */
+    background-position: 0 -54px; /* 雪碧图位置：X=0，Y=-54px */
+}
+
+/* 右箭头：定位到spec-list最右侧，雪碧图位置偏移(-78px,0)，显示右箭头图标 */
+.next{
+    right: 0; /* 右侧对齐父容器 */
+    background-position: -78px 0; /* 雪碧图位置：X=-78px，Y=0 */
+}
+
+/* 缩略图ul的容器：相对定位（给ul定位），宽290px、高54px，margin:0 auto水平居中，背景浅黄，overflow:hidden隐藏超出的ul部分 */
+.spec-items{
+    position: relative; /* 相对定位，作为内部ul的定位参考 */
+    width: 290px;
+    height: 54px;
+    margin: 0 auto; /* 水平居中，在spec-list里居中显示 */
+    background-color: antiquewhite; /* 背景浅黄，区分区域 */
+    overflow: hidden; /* 隐藏ul超出容器的部分，实现缩略图滚动效果 */
+}
+
+/* 缩略图ul：绝对定位（基于spec-items），top0 left0，宽406px（装下所有li）、高54px，背景浅灰，transition:all 0.5s让ul移动时有0.5秒过渡（丝滑切换） */
+.spec-items ul{
+    position: absolute; /* 绝对定位，相对于spec-items */
+    top: 0; /* 顶部对齐父容器 */
+    left: 0; /* 左侧对齐父容器 */
+    width: 406px; /* 宽度足够装下所有5个li（54*5 + 2*4=286，留余量） */
+    height: 54px;
+	background-color: #ccc; /* 背景浅灰，区分区域 */
+    /*background-color: aqua;*/ /* 注释的备用背景色，调试用 */
+    transition: all 0.5s; /* 所有属性变化都有0.5秒过渡，ul移动时更丝滑 */
+}
+
+/* 每个缩略图li：宽54px、高54px，左右各2px外边距（li之间拉开距离），左浮动（li横向排列） */
+.spec-items ul li{
+    width: 54px;
+    height: 54px;
+    margin: 0 2px; /* 左右外边距2px，li之间不贴紧 */
+    float: left; /* 左浮动，让li横向排列 */
+}
+
+/* 缩略图li里的img：宽50px、高50px，边框2px白色（未选中时的样式） */
+.spec-items ul li img{
+    width: 50px;
+    height: 50px;
+    border: 2px solid #fff; /* 白色边框，未选中时的样式 */
+}
+
+/* 选中的缩略图（img-hover类）：img边框换成2px红色（#e53e41），高亮显示选中状态 */
+.spec-items ul .img-hover img{
+    border: 2px solid #e53e41; /* 红色边框，选中时高亮 */
+}
+
+/* 放大镜小滑块（zoom-pup）：默认display:none隐藏，绝对定位（基于main-img），top0 left0，宽236px、高236px，背景金色，opacity:0.5半透明（能看到下面的图） */
+.zoom-pup{
+    display: none; /* 默认隐藏，鼠标移到主图才显示 */
+    position: absolute; /* 绝对定位，相对于main-img */
+    top: 0;
+    left: 0;
+    width: 236px;
+    height: 236px;
+    background-color: gold; /* 金色背景，区分滑块 */
+    opacity: 0.5; /* 透明度0.5，半透明显示 */
+}
+
+/* 放大镜大图容器：position:relative（重复属性，保留原代码），默认display:none隐藏，绝对定位（基于main-img），top0 left351px（在主图右侧），宽540px、高540px，背景红色，overflow:hidden隐藏大图超出的部分 */
+.zoom-div{
+    position: relative; /* 重复属性，保留原代码（实际生效的是下面的absolute） */
+    display: none; /* 默认隐藏，鼠标移到主图才显示 */
+    position: absolute; /* 绝对定位，相对于main-img */
+    top: 0; /* 顶部对齐主图 */
+    left: 351px; /* 左侧在主图右侧（主图宽350px+1px间距） */
+    width: 540px;
+    height: 540px;
+    background-color: red; /* 背景红色，区分区域 */
+    overflow: hidden; /* 隐藏大图超出容器的部分，只显示滑块对应区域 */
+}
+
+/* 放大镜里的大图：绝对定位（基于zoom-div），top0 left0，宽800px、高800px（比容器大，实现放大效果） */
+.zoom-div img{
+    position: absolute; /* 绝对定位，相对于zoom-div */
+    top: 0;
+    left: 0;
+    width: 800px; /* 大图宽度，比容器大，实现放大 */
+	height: 800px;
+}
+
+/* 商品基础信息容器：宽度100%（占满itemInfo-wrap），高360px，背景白色 */
+.blank{
+    width: 100%; /* 宽度铺满父容器itemInfo-wrap */
+    height: 360px;
+	background-color: #ffffff; /* 背景白色，显示信息更清晰 */
+   /* background-color: palegoldenrod;*/ /* 注释的备用背景色，调试用 */
+}
+
+/* 商品标题：字体大小21px，宽度590px（占满itemInfo-wrap），字体加粗，高70px，颜色#333（深灰），行高31px（文字垂直居中），上下外边距0 auto 2px（底部2px间距），左对齐，左浮动 */
+.blank-text{
+   font-size: 21px; /* 字体大小，标题更醒目 */
+   width: 590px; /* 宽度和父容器一致 */
+   font-weight: bold; /* 字体加粗 */
+    height: 70px;
+    color: #333; /* 深灰色文字，清晰 */
+    line-height: 31px; /* 行高，文字垂直方向更舒适 */
+    margin: 0 auto 2px; /* 底部2px外边距，和下方说明拉开距离 */
+	text-align: left; /* 文字左对齐，符合阅读习惯 */
+	float: left; /* 左浮动，独占一行 */
+}
+
+/* 商品小说明（可开发票）：字体大小15px，宽度590px，高10px，颜色#b0b0b0（浅灰），字体大小12px（覆盖前面的15px），行高18px，上下外边距0 auto 10px（底部10px间距），左对齐，左浮动 */
+.blank-text-desc{
+    font-size: 15px; /* 被下面的12px覆盖，保留原代码 */
+	width: 590px; /* 宽度和父容器一致 */
+    height: 10px;
+    color: #b0b0b0; /* 浅灰色文字，次要信息 */
+    font-size: 12px; /* 最终生效的字体大小，更小更低调 */
+    line-height: 18px; /* 行高，文字不贴边 */
+    margin: 0 auto 10px; /* 底部10px外边距，和价格区拉开距离 */
+	text-align: left; /* 文字左对齐 */
+	float: left; /* 左浮动，独占一行 */
+}
+/* 价格信息容器：左浮动，宽度590px，高40px（装下折后价+原价） */
+.desc-price{
+	float: left; /* 左浮动，独占一行 */
+	width: 590px;
+	height: 40px;
+}
+/* 折后价：颜色#ff6700（橙色，醒目），字体大小27px，左对齐，左浮动 */
+.blank-price{
+    color: #ff6700; /* 橙色，突出优惠价 */
+    font-size: 27px; /* 字体大，更醒目 */
+	text-align: left; /* 左对齐 */
+	float: left; /* 左浮动，和原价并排 */
+}
+/* 原价+销量：颜色#b0b0b0（浅灰），字体大小16px，左对齐，左浮动，顶部外边距8px（和折后价垂直对齐） */
+.blank-price2{
+    color: #b0b0b0; /* 浅灰色，次要信息 */
+    font-size: 16px;
+	text-align: left; /* 左对齐 */
+	float: left; /* 左浮动，和折后价并排 */
+	margin-top: 8px; /* 顶部8px外边距，和折后价垂直居中 */
+}
+/* 原价的删除线：颜色#b0b0b0（浅灰），左侧外边距8px（和前面文字拉开距离） */
+.blank-price2>del{
+    color: #b0b0b0; /* 浅灰色，和原价文字一致 */
+    margin-left: 8px; /* 左侧8px间距，不贴紧前面文字 */
+}
+/* 配送/保障等详情容器：左浮动，宽度590px，高100px，行高42px（文字垂直居中） */
+.xijie{
+	float: left; /* 左浮动，独占一行 */
+	width: 590px;
+	height: 100px;
+	line-height: 42px; /* 行高42px，文字垂直居中 */
+}
+/* 配送标签（配 送：）：颜色#b0b0b0（浅灰），字体大小15px，左对齐，左浮动，顶部外边距6px（垂直对齐） */
+.peisong{
+    color: #b0b0b0; /* 浅灰色，标签色 */
+    font-size: 15px;
+	text-align: left; /* 左对齐 */
+	float: left; /* 左浮动，和配送详情并排 */
+	margin-top: 6px; /* 顶部6px外边距，垂直居中 */
+}
+/* 配送详情：颜色#333（深灰），字体大小14px，左对齐，顶部外边距8px（垂直对齐） */
+.peisong2{
+    color: #333333; /* 深灰色，内容色 */
+    font-size: 14px;
+	text-align: left; /* 左对齐 */
+	margin-top: 8px; /* 顶部8px外边距，垂直居中 */
+}
+/* 保障标签（保 障：）：颜色#b0b0b0（浅灰），字体大小15px，左对齐，左浮动，顶部外边距6px（垂直对齐） */
+.baozhang{
+    color: #b0b0b0; /* 浅灰色，标签色 */
+    font-size: 15px;
+	text-align: left; /* 左对齐 */
+	float: left; /* 左浮动，和保障详情并排 */
+	margin-top: 6px; /* 顶部6px外边距，垂直居中 */
+}
+/* 保障详情：颜色#333（深灰），字体大小14px，左对齐，顶部外边距8px（垂直对齐） */
+.baozhang2{
+    color: #333333; /* 深灰色，内容色 */
+    font-size: 14px;
+	text-align: left; /* 左对齐 */
+	margin-top: 8px; /* 顶部8px外边距，垂直居中 */
+}
+/* 颜色标签（颜 色：）：颜色#b0b0b0（浅灰），字体大小15px，左对齐，float:left被注释（不浮动），顶部外边距6px */
+.blank-color{
+    color: #b0b0b0; /* 浅灰色，标签色 */
+    font-size: 15px;
+	text-align: left; /* 左对齐 */
+	/*float: left;*/ /* 注释的浮动，保留原代码 */
+	margin-top: 6px; /* 顶部6px外边距，垂直对齐 */
+}
+/* 颜色选择区：颜色#333（深灰），字体大小14px，左对齐，顶部外边距6px */
+.blank-color2{
+    color: #333333; /* 深灰色，内容色 */
+    font-size: 14px;
+	text-align: left; /* 左对齐 */
+	margin-top: 6px; /* 顶部6px外边距，垂直对齐 */
+}
+/* 数量标签（数 量：）：颜色#b0b0b0（浅灰），字体大小15px，左对齐，左浮动 */
+.blank-number{
+	color: #b0b0b0; /* 浅灰色，标签色 */
+	font-size: 15px;
+	text-align: left; /* 左对齐 */
+	float: left; /* 左浮动，和数量选择框并排 */
+}
+/* 购买按钮容器：无样式，仅作为buy和buycar的父容器（占位） */
+.gouwu{
+	
+}
+/* 立即购买按钮：宽210px、高70px，文字左对齐，margin-top:75px被注释，左浮动 */
+.buy{
+	width: 210px;
+	height: 70px;
+	text-align: left; /* 图片左对齐 */
+	/*margin-top: 75px;*/ /* 注释的外边距，保留原代码 */
+	float: left; /* 左浮动，和购物车按钮并排 */
+}
+/* 加入购物车按钮：高70px，文字左对齐，顶部外边距75px（和立即购买按钮拉开距离） */
+.buycar{
+	height: 70px;
+	text-align: left; /* 图片左对齐 */
+	margin-top: 75px; /* 顶部75px外边距，和立即购买按钮分开 */
+}
+
+/* 数量选择容器：相对定位（给内部输入框/按钮定位），宽58px、高44px，边框1px浅灰，右外边距10px，背景红色（调试用） */
+.choose-amount{
+    position: relative; /* 相对定位，作为内部元素的定位参考 */
+    width: 58px;
+    height: 44px;
+    border: 1px solid #ccc; /* 浅灰色边框，区分区域 */
+    margin-right: 10px; /* 右侧10px外边距，和其他元素拉开距离 */
+    background-color: red; /* 红色背景，调试用，区分区域 */
+}
+
+/* 数量输入框：绝对定位（基于choose-amount），top1px left0，宽43px、高42px，内边距1px 2px，行高42px（文字垂直居中），无边框，文字居中对齐 */
+.buy-num{
+    position: absolute; /* 绝对定位，相对于choose-amount */
+    top: 1px; /* 顶部1px偏移，不贴边框 */
+    left: 0; /* 左侧对齐父容器 */
+    width: 43px;
+    height: 42px;
+    padding: 1px 2px; /* 内边距，文字不贴边 */
+    line-height: 42px; /* 行高等于高度，文字垂直居中 */
+    border: 0; /* 无边框，更美观 */
+    text-align: center; /* 文字居中对齐 */
+}
+
+/* 加减按钮通用样式：绝对定位（基于choose-amount），宽15px、高22px，边框1px浅灰，颜色#666（深灰），行高22px（文字垂直居中），背景#f1f1f1（浅灰） */
+.reduce, .add{
+    position: absolute; /* 绝对定位，相对于choose-amount */
+    width: 15px;
+    height: 22px;
+    border: 1px solid #ccc; /* 浅灰色边框 */
+    color: #666; /* 深灰色文字，按钮文字 */
+    line-height: 22px; /* 行高等于高度，文字垂直居中 */
+    background-color: #f1f1f1; /* 浅灰色背景，按钮样式 */
+}
+
+/* 减号按钮：定位到choose-amount右下角（right:-1px bottom:-1px，对齐边框） */
+.reduce{
+    right: -1px; /* 右侧-1px，和容器边框对齐 */
+    bottom: -1px; /* 底部-1px，和容器边框对齐 */
+}
+/* 加号按钮：定位到choose-amount右上角（top:-1px笔误，应为top:-1px，right:-1px，对齐边框） */
+.add{
+    top: -1; /* 笔误，应为top:-1px，顶部-1px，和容器边框对齐 */
+    right: -1px; /* 右侧-1px，和容器边框对齐 */
+}
+
+/* 禁用状态（disabled类）：颜色#ccc（浅灰），鼠标指针变not-allowed（禁止），提示不可点击 */
+.disabled{
+    color: #ccc; /* 浅灰色，禁用状态文字 */
+    cursor: not-allowed; /* 鼠标指针变禁止，提示不可点击 */
+}
