@@ -1,0 +1,103 @@
+/* 基础样式：设置字体和背景色 */
+body{
+    font-family: Arial, Helvetica, "Hiragino Sans GB", "Microsoft Yahei", sans-serif;  /* 常用字体，保证中文显示正常 */
+    background:#f5f6f8;  /* 页面背景色：浅灰色 */
+}
+/* 登录页容器：让登录框居中显示 */
+.login-page{
+    display:flex;  /* 弹性布局 */
+    align-items:center;  /* 垂直居中 */
+    justify-content:center;  /* 水平居中 */
+    min-height:80vh;  /* 最小高度=屏幕80%，确保垂直居中 */
+    padding:30px;  /* 内边距：避免贴边 */
+}
+/* 登录框样式：白色背景，圆角，阴影 */
+.login-box{
+    width:420px;  /* 宽度固定 */
+    background:#fff;  /* 白色背景 */
+    border-radius:8px;  /* 圆角边框 */
+    box-shadow:0 6px 18px rgba(0,0,0,0.08);  /* 轻微阴影：立体感 */
+    overflow:hidden;  /* 超出部分隐藏（配合圆角） */
+}
+/* 切换标签容器：水平排列按钮 */
+.tabs{
+    display:flex;  /* 弹性布局 */
+}
+/* 标签按钮样式 */
+.tabs button{
+    flex:1;  /* 按钮平均占满宽度 */
+    padding:14px 0;  /* 上下内边距 */
+    border:none;  /* 去掉默认边框 */
+    background:#fafafa;  /* 浅灰背景 */
+    border-bottom:1px solid #eee;  /* 底部边框 */
+    cursor:pointer;  /* 鼠标变成小手 */
+    font-size:16px;  /* 文字大小 */
+}
+/* 选中的标签按钮：白色背景，红色下划线 */
+.tabs button.active{
+    background:#fff;  /* 白色背景 */
+    border-bottom:2px solid #ff6b6b;  /* 红色下划线 */
+    font-weight:600;  /* 文字加粗 */
+}
+/* 表单容器：内边距 */
+.forms{
+    padding:20px;  /* 内边距 */
+}
+/* 输入框区域：底部间距 */
+.field{
+    margin-bottom:14px;  /* 底部外边距：隔开多个输入框 */
+}
+/* 标签文字样式 */
+.field label{
+    display:block;  /* 块级元素：独占一行 */
+    color:#333;  /* 文字颜色：深灰 */
+    margin-bottom:6px;  /* 与输入框的间距 */
+    font-size:14px;  /* 文字大小 */
+}
+/* 输入框样式 */
+.field input{
+    width:100%;  /* 宽度占满容器 */
+    padding:10px 12px;  /* 内边距：输入区域更大 */
+    border:1px solid #ddd;  /* 灰色边框 */
+    border-radius:4px;  /* 圆角 */
+    box-sizing:border-box;  /* 宽度包含边框和内边距 */
+}
+/* 错误提示样式 */
+.hint{
+    color:#d00;  /* 红色文字：错误提示 */
+    font-size:12px;  /* 小字体 */
+    height:16px;  /* 固定高度：避免提示出现时布局跳动 */
+    margin-top:4px;  /* 与输入框的间距 */
+}
+/* 按钮区域：顶部间距 */
+.actions{
+    margin-top:6px;  /* 与输入框的间距 */
+}
+/* 主按钮样式（登录/注册按钮） */
+.primary{
+    background:#ff6b6b;  /* 红色背景 */
+    color:#fff;  /* 白色文字 */
+    border:none;  /* 无边框 */
+    padding:10px 14px;  /* 内边距 */
+    border-radius:4px;  /* 圆角 */
+    cursor:pointer;  /* 鼠标小手 */
+}
+/* 结果提示样式（成功/失败） */
+.result{
+    margin-top:10px;  /* 与按钮的间距 */
+    font-size:14px;  /* 文字大小 */
+    color:#2d8a2d;  /* 绿色：成功提示 */
+}
+/* 表单默认隐藏，只有带active的显示 */
+.form{
+    display:none;  /* 默认隐藏 */
+}
+.form.active{
+    display:block;  /* 显示选中的表单 */
+}
+/* 手机适配：小屏幕时登录框占满宽度 */
+@media (max-width:480px){
+    .login-box{
+        width:100%;  /* 宽度=屏幕宽度 */
+    }
+}

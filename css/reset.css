@@ -1,0 +1,26 @@
+/* ===================== 整体模块作用 ===================== */
+/* 这段代码叫「样式重置」，核心目的：清除浏览器给各类标签自带的默认样式
+  （比如列表有圆点、链接有下划线、标签有边距），
+   让不同浏览器（Chrome/Edge/火狐）显示页面时样式一致，避免布局乱掉 */
+
+/* ===================== 逐行代码解释 ===================== */
+/* 1. 选中网页里所有常用标签（body、div、列表、标题、输入框等），
+     统一清除它们自带的「外边距(margin)」和「内边距(padding)」
+   （比如浏览器默认给body、p、ul这些标签加了边距，不清除会导致布局有多余空白） */
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, legend, input, textarea, button, p, blockquote, th, td
+{margin: 0;padding: 0;}
+
+/* 2. 给网页整体（body）设置基础样式：
+   - background: #f1f1f1; → 网页背景色设为浅灰色
+   - text-align: center; → 网页里的文字默认居中显示（后续可单独改某块文字的对齐方式）
+   - font-family: ...; → 指定网页字体（优先用系统自带的无衬线字体，保证不同电脑/手机显示文字一致，不会乱码） */
+body{background: #f1f1f1; text-align: center;font-family: Helvetica Neue,Helvetica,Arial,Microsoft Yahei,Hiragino Sans GB,Heiti SC,WenQuanYi Micro Hei,sans-serif;}
+
+/* 3. 清除列表项（li）的默认样式 → 比如ul/ol里的li原本有小圆点/数字序号，加这行就彻底去掉了 */
+li{ list-style: none;}
+
+/* 4. 清除链接（a标签）的默认样式 → 链接原本有下划线，加这行就去掉了，后续想加下划线再单独设置 */
+a{text-decoration: none;}
+
+/* 5. 清除图片（img）的默认样式 → 比如图片外面套链接时，部分浏览器会给图片加蓝色边框，加这行就去掉了 */
+img{border: none;}

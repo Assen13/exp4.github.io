@@ -1,0 +1,725 @@
+/* 顶部广告模块：控制页面最顶部广告图的显示样式 */
+/* 顶部广告 start */
+.header{
+    width: 100%;          /* 广告盒子宽度占满整个屏幕 */
+    height: 120px;        /* 广告盒子高度固定120像素，控制上下高度 */
+    overflow: hidden;     /* 广告内容超出盒子的部分隐藏（比如图片太大就切掉） */
+    position: relative;   /* 开启定位，让里面的广告图能居中显示 */
+}
+
+/*
+    面试常见的CSS问题：
+        1. 内容居中问题：一个大盒子中有个小盒子，如何让小盒子在大盒子中垂直和水平居中？
+            1. 弹性盒子模型
+            2. 定位
+            3. 表格
+*/
+
+.header img{
+    height: 120px;                /* 广告图高度和盒子一样，避免变形 */
+    position: absolute;           /* 绝对定位，脱离默认布局，方便居中 */
+    left: 50%;                    /* 先把图片左边对齐盒子中间 */
+    transform:translateX(-50%);   /* 再往左挪图片自身宽度的一半，最终水平居中 */
+}
+/* 顶部广告 end */
+
+/* 黑色导航模块：控制页面顶部黑色条（登录/购物车/下载APP）的样式 */
+/* 黑色导航 start */
+.black-nav{
+    width: 100%;          /* 黑色导航条宽度占满屏幕 */
+    height: 40px;         /* 导航条高度固定40像素 */
+    line-height: 40px;    /* 文字行高等于导航条高度，让文字垂直居中（不偏上/下） */
+    background-color: #333;/* 导航条背景色设为深黑色 */
+    font-size: 12px;      /* 导航文字大小12像素，小一点更美观 */
+}
+.wrap{
+    width: 1226px;        /* 内容容器宽度固定1226像素（不让内容拉太宽） */
+    margin: 0 auto;       /* 左右自动居中，让导航内容在屏幕中间显示 */
+}
+.black-nav .wrap .black-nav-left{
+    float: left;          /* 左导航（比如“网上商城”）靠左边显示 */
+}
+/* less sass ... */
+.black-nav .wrap .black-nav-right{
+    float: right;         /* 右导航（比如登录、购物车）靠右边显示 */
+}
+
+.black-nav .wrap li{
+    float: left;          /* 导航列表项（每个文字）并排显示，不竖着排 */
+    position: relative;   /* 开启定位，给下拉框/二维码定位用 */
+}
+
+.black-nav a{
+    color: #b0b0b0;       /* 导航链接文字设为浅灰色 */
+}
+
+.black-nav .wrap li span{
+    color: #424242;       /* 导航分隔符（|）设为浅黑色，和背景区分 */
+    margin: 0 3.6px;      /* 分隔符左右留3.6像素空隙，不挤 */
+}
+
+.download{
+    width: 124px;         /* 下载APP的二维码盒子宽度124像素 */
+    height: 0px;          /* 默认高度0，隐藏二维码 */
+    background:#fff;      /* 二维码盒子背景白色 */
+    box-shadow: 0 1px 5px #aaa;/* 加阴影，让盒子看起来浮起来 */
+    position: absolute;   /* 绝对定位，相对于导航项 */
+    top: 40px;            /* 盒子顶部对齐导航条底部（导航条高40px） */
+    left: 50%;            /* 盒子左边对齐导航项中间 */
+    margin-left: -62px;   /* 往左挪62像素（自己宽度的一半），居中显示 */
+    z-index:10;           /* 层级设10，显示在其他元素上面，不被挡住 */
+    overflow: hidden;     /* 超出部分隐藏，高度0时内容不露出来 */
+}
+
+.download img{
+    width: 90px;          /* 二维码图片宽度90像素，适配盒子 */
+    margin: 18px auto 0;  /* 上外边距18像素，左右自动居中，下外边距0 */
+}
+
+.download p{
+    color: #333;          /* 二维码下方文字设为深灰色 */
+    font-size: 12px;      /* 文字大小12像素 */
+    line-height: 12px;    /* 行高12像素，文字垂直居中 */
+}
+
+.black-nav-left li:hover>.download{
+    height: 148px;        /* 鼠标放到下载项上，二维码盒子高度变148像素（显示出来） */
+}
+
+.stri{
+    width: 0;             /* 宽度0，用边框做小三角 */
+    height: 0;            /* 高度0，用边框做小三角 */
+    border-bottom: 8px solid #fff;/* 下边框8像素白色（三角的底边） */
+    border-left: 8px solid transparent;/* 左边框透明（三角左斜边） */
+    border-right: 8px solid transparent;/* 右边框透明（三角右斜边） */
+    position: absolute;   /* 绝对定位，相对于导航项 */
+    bottom: 0;            /* 三角底部对齐二维码盒子顶部 */
+    left: 50%;            /* 三角左边对齐导航项中间 */
+    margin-left: -8px;    /* 往左挪8像素（自己宽度的一半），居中 */
+    display: none;        /* 默认隐藏小三角 */
+}
+
+.black-nav-left>li:hover>.stri{
+    display: block;       /* 鼠标放到下载项上，显示小三角 */
+}
+
+.cart{
+    width: 120px;         /* 购物车盒子宽度120像素 */
+    height: 40px;         /* 高度和导航条一样（40像素） */
+    background-color: #424242;/* 购物车背景色比导航条浅一点 */
+    margin-left: 25px;    /* 左边距25像素，和其他导航项拉开距离 */
+}
+
+.cart:hover{
+    background: #fff;     /* 鼠标放到购物车上，背景变白 */
+}
+
+.cart:hover>a{
+    color: #ff6700;       /* 鼠标放到购物车上，文字变橙色（小米品牌色） */
+}
+
+.cart i{
+    font-style: normal;   /* 去掉i标签默认的斜体（购物车文字不斜） */
+    margin-right: 8px;    /* 购物车图标/文字右边留8像素空隙，不挤 */
+}
+
+.cart-list{
+    width: 316px;         /* 购物车下拉框宽度316像素 */
+    height: 0px;          /* 默认高度0，隐藏下拉框 */
+    background: #fff;     /* 下拉框背景白色 */
+    box-shadow: 0 2px 10px rgba(0,0,0,0.15);/* 加阴影，浮起来的效果 */
+    position: absolute;   /* 绝对定位，相对于购物车 */
+    right: 0;             /* 下拉框右边对齐购物车右边 */
+    top: 40px;            /* 下拉框顶部对齐导航条底部 */
+    color: #424242;       /* 下拉框文字深灰色 */
+    overflow: hidden;     /* 超出部分隐藏 */
+    line-height: 100px;   /* 行高100像素，文字垂直居中 */
+    z-index:10;           /* 层级10，不被其他元素挡住 */
+}
+
+.cart:hover>.cart-list{
+    height: 100px;        /* 鼠标放到购物车上，下拉框高度变100像素（显示） */
+}
+
+/* 黑色导航 end */
+
+/* 白色导航模块：控制页面中间白色条（Logo/商品分类/搜索框）的样式 */
+/* 白色导航 start */
+.white-nav{
+    width: 100%;          /* 白色导航条宽度占满屏幕 */
+    height: 100px;        /* 高度100像素 */
+    background-color: #fff;/* 背景白色 */
+    position: relative;   /* 开启定位，给商品分类下拉菜单定位用 */
+}
+
+.logo{
+    width: 55px;          /* Logo盒子宽度55像素 */
+    height: 55px;         /* Logo盒子高度55像素 */
+    background-color: #ff6700;/* Logo盒子背景橙色（小米品牌色） */
+    float: left;          /* Logo靠左边显示 */
+    margin-top: 22.5px;   /* 上外边距22.5像素，垂直居中（(100-55)/2=22.5） */
+    overflow: hidden;     /* 超出部分隐藏，实现Logo切换效果 */
+    position: relative;   /* 开启定位，给里面的两张Logo图定位 */
+    border-radius: 10px;  /* 圆角10像素，Logo盒子边角变圆 */
+}
+
+.logo>img{
+    width: 100%;          /* Logo图片宽度占满盒子 */
+    height: 100%;         /* Logo图片高度占满盒子 */
+    /*position: absolute;                  log的渐进转变*/
+    top: 0;               /* 图片顶部对齐Logo盒子顶部 */
+    transition: all 0.2s; /* 所有样式变化用0.2秒过渡，切换Logo更丝滑 */
+}
+
+.mi-home{
+    left: -55px;          /* 首页Logo图往左挪55像素，默认隐藏 */
+}
+
+.mi-logo{
+    left: 0;              /* 小米品牌Logo图不偏移，默认显示 */
+}
+
+.logo:hover>.mi-home{
+    left: 0px;            /* 鼠标放到Logo上，首页Logo图挪到0位置（显示） */
+}
+.logo:hover>.mi-logo{
+    left: 55px;           /* 鼠标放到Logo上，品牌Logo图往右挪55像素（隐藏） */
+}
+
+.nav-bar{
+    width: 875px;         /* 商品分类导航盒子宽度875像素 */
+    height: 100px;        /* 高度和白色导航一样（100像素） */
+    line-height: 100px;   /* 行高100像素，文字垂直居中 */
+    float: left;          /* 和Logo并排显示 */
+}
+
+.search{
+    width: 296px;         /* 搜索框盒子宽度296像素 */
+    height: 100px;        /* 高度100像素 */
+    float: right;         /* 搜索框靠右边显示 */
+}
+.nav-bar li{
+    float: left;          /* 商品分类列表项（比如“手机”）并排显示 */
+}
+.nav-bar li a{
+    color: #333;          /* 分类链接文字深灰色 */
+    padding: 0 10px;      /* 文字左右留10像素空隙，不挤 */
+}
+.nav-bar li a:hover{
+    color: #ff6700;       /* 鼠标放到分类上，文字变橙色 */
+}
+.nav-bar ul li img{
+    margin-top: 22.5px;   /* 分类里的活动图片上外边距22.5像素，垂直居中 */
+}
+
+.search input{
+    /* 296 - 244 = 52 */
+    width: 244px;         /* 搜索输入框宽度244像素 */
+    height: 50px;         /* 输入框高度50像素 */
+    float: left;          /* 和搜索按钮并排显示 */
+    border: 1px solid #e0e0e0;/* 输入框边框1像素浅灰色 */
+    box-sizing: border-box;/* 盒模型：宽度包含边框，不超出 */
+    margin-top: 25px;     /* 上外边距25像素，垂直居中（(100-50)/2=25） */
+    padding: 0 10px;      /* 输入框内左右留10像素，文字不贴边 */
+    outline: none;        /* 去掉输入框聚焦时的默认边框（更美观） */
+    border-right: 0;      /* 去掉输入框右边框，和按钮无缝衔接 */
+}
+
+.search button{
+    width: 52px;          /* 搜索按钮宽度52像素（296-244=52） */
+    height: 50px;         /* 按钮高度和输入框一样（50像素） */
+    float: right;         /* 按钮靠右边显示 */
+    border: 1px solid #e0e0e0;/* 按钮边框1像素浅灰色 */
+    margin-top: 25px;     /* 上外边距25像素，垂直居中 */
+}
+
+.search button:hover{
+    background: #ff6700;  /* 鼠标放到按钮上，背景变橙色 */
+    color: #fff;          /* 鼠标放到按钮上，文字变白 */
+}
+
+.nav-bar-list{
+    width: 100%;          /* 分类下拉菜单宽度占满屏幕 */
+    height: 229px;        /* 下拉菜单高度229像素 */
+    background: #fff;     /* 下拉菜单背景白色 */
+    border-top: 1px solid #eee;/* 顶部边框1像素浅灰色（分隔线） */
+    box-shadow: 0 3px 4px rgba(0,0,0,0.1);/* 加阴影，浮起来的效果 */
+    position: absolute;   /* 绝对定位，相对于白色导航 */
+    left: 0;              /* 左边对齐屏幕左边 */
+    top: 100px;           /* 顶部对齐白色导航底部 */
+    display: none;        /* 默认隐藏下拉菜单 */
+    z-index:10;           /* 层级10，不被挡住 */
+}
+
+.nav-bar li:hover>.nav-bar-list{
+    display: block;       /* 鼠标放到分类上，显示下拉菜单 */
+}
+
+.nav-bar-list li{
+    line-height: normal;  /* 下拉菜单里的文字行高恢复默认（不用100像素） */
+    border-right: 1px solid #eee;/* 右边框1像素浅灰色，分隔商品 */
+}
+
+.nav-bar-list .name{
+    font-size: 12px;      /* 下拉菜单商品名称12像素 */
+    color: #333;          /* 商品名称深灰色 */
+}
+
+.nav-bar-list .price{
+    font-size: 12px;      /* 下拉菜单商品价格12像素 */
+    color: #ff6700;       /* 价格橙色，突出显示 */
+}
+
+/* 白色导航 end */
+
+/* banner模块：控制轮播图+左侧分类菜单的样式 */
+/* banner start */
+.banner{
+    width: 100%;          /* 轮播图盒子宽度占满屏幕 */
+    height: 460px;        /* 轮播图高度460像素 */
+}
+.banner-img{
+    width: 100%;          /* 轮播图图片宽度占满盒子 */
+}
+
+.banner>.wrap{
+    position: relative;   /* 开启定位，给左侧分类菜单定位用 */
+}
+
+.slide{
+    width: 234px;         /* 轮播图左侧分类菜单宽度234像素 */
+    height: 420px;        /* 菜单高度420像素 */
+    padding: 20px 0;      /* 菜单上下内边距20像素，文字不贴边 */
+    background-color: rgba(105,101,101,0.6);/* 菜单背景半透明灰色（不挡轮播图） */
+    position: absolute;   /* 绝对定位，相对于wrap盒子 */
+    left: 0;              /* 菜单左边对齐wrap盒子左边 */
+    top: 0;               /* 菜单顶部对齐wrap盒子顶部 */
+}
+
+.slide>ul>li{
+    height: 42px;         /* 分类菜单项高度42像素 */
+    line-height: 42px;    /* 行高42像素，文字垂直居中 */
+    text-align: left;     /* 文字左对齐 */
+    padding-left: 30px;   /* 文字左内边距30像素，不贴边 */
+    font-size: 14px;      /* 文字大小14像素 */
+}
+
+.slide>ul>li>a{
+    color: #fff;          /* 分类菜单文字白色 */
+}
+
+.slide i{
+    float: right;         /* 菜单箭头（>）靠右边显示 */
+    padding-right: 20px;  /* 箭头右内边距20像素，不贴边 */
+}
+.slide>ul>li:hover{
+    background-color: #ff6700;/* 鼠标放到菜单项上，背景变橙色 */
+}
+
+.slide-list{
+    /* 1226px - 234px = 992px */
+    width: 992px;         /* 分类菜单下拉子菜单宽度992像素 */
+    height: 460px;        /* 子菜单高度和轮播图一样（460像素） */
+    background-color: #fff;/* 子菜单背景白色 */
+    border: 1px solid #e0e0e0;/* 子菜单边框1像素浅灰色 */
+    border-left: none;    /* 去掉左边框，和主菜单无缝衔接 */
+    box-sizing: border-box;/* 盒模型：宽度包含边框 */
+    box-shadow: 0 8px 16px rgba(0,0,0,0.18);/* 加阴影，更立体 */
+    position: absolute;   /* 绝对定位，相对于主菜单 */
+    top:0;                /* 子菜单顶部对齐主菜单顶部 */
+    left: 234px;          /* 子菜单左边对齐主菜单右边 */
+    display: none;        /* 默认隐藏子菜单 */
+}
+.slide-list ul{
+    width: 100%;          /* 子菜单列表宽度占满 */
+}
+.slide-list ul li{
+    width: 240px;         /* 子菜单商品项宽度240像素 */
+    height: 110px;        /* 商品项高度110像素 */
+    float: left;          /* 商品项并排显示 */
+    padding: 18px 0 18px 20px;/* 上下内边距18像素，左内边距20像素 */
+    box-sizing: border-box;/* 盒模型：宽度包含内边距 */
+    line-height: 76px;    /* 行高76像素，文字垂直居中 */
+}
+.slide-list img{
+    width: 80px;          /* 子菜单商品图片宽度80像素 */
+    margin-right: 10px;   /* 图片右边留10像素，和文字隔开 */
+}
+.slide-list span{
+    color: #333;          /* 子菜单商品名称深灰色 */
+    font-size: 16px;      /* 名称16像素 */
+    position: relative;   /* 开启定位，微调位置 */
+    top: -10px;           /* 往上挪10像素，对齐图片 */
+}
+.slide li:hover .slide-list{
+    display: block;       /* 鼠标放到主菜单上，显示子菜单 */
+}
+.slide-list li:hover span{
+    color: #ff6700;       /* 鼠标放到商品项上，名称变橙色 */
+}
+/* banner end */
+
+/* 广告模块：控制轮播图下方小广告区的样式 */
+/* 广告模块 start */
+.ad{
+    width: 100%;          /* 广告模块宽度占满屏幕 */
+    height: 170px;        /* 高度170像素 */
+    padding: 14px 0;      /* 上下内边距14像素 */
+    background-color: #fff;/* 背景白色 */
+	padding-bottom: 34px; /* 下内边距34像素，调整整体位置 */
+}
+.ad-aside{
+    width: 234px;         /* 广告左侧小图标区宽度234像素 */
+    height: 191px;        /* 高度191像素 */
+    background-color: #5f5750;/* 背景深棕色 */
+    padding: 3px;         /* 内边距3像素 */
+    box-sizing: border-box;/* 盒模型：宽度包含内边距 */
+    font-size: 12px;      /* 文字12像素 */
+    float: left;          /* 左侧图标区靠左边显示 */
+	padding-top: 12px;    /* 上内边距12像素，调整位置 */
+}
+.ad-aside li{
+    float: left;          /* 图标列表项并排显示 */
+    /* 234 - 6 = 228 / 3 = 76 */
+    width: 76px;          /* 每个图标项宽度76像素 */
+    /* 170 -  6 = 164 / 2 = 82*/
+    height: 82px;         /* 每个图标项高度82像素 */
+    padding-top: 18px;    /* 上内边距18像素，文字不贴顶 */
+    box-sizing: border-box;/* 盒模型：宽度包含内边距 */
+    opacity: 0.7;         /* 透明度0.7，默认偏暗 */
+}
+
+.ad-aside i{
+    font-size: 24px;      /* 图标大小24像素 */
+    margin-bottom: 4px;   /* 图标下外边距4像素，和文字隔开 */
+    display: block;       /* 块级元素，独占一行 */
+    color: #fff;          /* 图标白色 */
+}
+.ad-aside p{
+    color: #fff;          /* 图标下方文字白色 */
+}
+.ad-aside li:hover{
+    opacity: 1;           /* 鼠标放到图标项上，透明度1（变亮） */
+}
+.ad-img{
+    width: 316px;         /* 广告右侧图片区宽度316像素 */
+    height: 170px;        /* 高度170像素 */
+    margin-left: 14.6px;  /* 左边距14.6像素，和左侧隔开 */
+    float: left;          /* 图片区并排显示 */
+}
+.ad-img img{
+    width: 100%;          /* 广告图片宽度占满图片区 */
+}
+/* 广告模块 end */
+
+/* 内容模块：控制商品区域的背景样式 */
+/* 内容模块 start */
+.content{
+    width: 100%;          /* 内容模块宽度占满屏幕 */
+    background-color: #f1f1f1;/* 背景浅灰色，区分广告和商品 */
+    overflow: hidden;     /* 超出部分隐藏，防止内容溢出 */
+    padding: 4px 0 12px;  /* 上下内边距4/12像素，调整位置 */
+}
+/* 内容模块 end */
+
+/* 手机模块：控制手机商品展示卡片的样式 */
+/* 手机模块 start */
+.title{
+    text-align: left;     /* 商品模块标题（比如“手机”）左对齐 */
+    color: #333;          /* 标题深灰色 */
+    font-size: 22px;      /* 标题22像素 */
+    font-weight: 200;     /* 字体变细，不加粗 */
+    line-height: 58px;    /* 行高58像素，垂直居中 */
+}
+.phone-box{
+    width: 100%;          /* 手机商品总盒子宽度占满 */
+    height: 614px;        /* 高度614像素 */
+}
+
+.phone-box-left{
+    width: 234px;         /* 手机模块左侧大图片区宽度234像素 */
+    height: 614px;        /* 高度614像素 */
+    float: left;          /* 左侧图片区靠左边 */
+}
+.phone-box-right{
+    width: 992px;         /* 手机模块右侧商品列表区宽度992像素 */
+    height: 614px;        /* 高度614像素 */
+    float: left;          /* 和左侧图片区并排 */
+}
+/* 服装*/.item-clothes{
+    /* 4元素：平分992 */
+    /* 14 * 4 = 56  (992- 56) / 4 */
+    width: 234px;         /* 服装商品卡片宽度234像素 */
+    height: 300px;        /* 高度300像素 */
+    margin: 0 0 14px 14px;/* 下/左外边距14像素，隔开卡片 */
+    background: #fff;     /* 卡片背景白色 */
+    padding: 0px 0px;     /* 内边距0，服装图片占满 */
+    box-sizing: border-box;/* 盒模型：宽度包含边框 */
+    float: left;          /* 卡片并排显示 */
+    transition: all 0.2s linear;/* 样式变化0.2秒过渡，hover更丝滑 */
+}
+.item{
+    /* 4元素：平分992 */
+    /* 14 * 4 = 56  (992- 56) / 4 */
+    width: 234px;         /* 通用商品卡片宽度234像素 */
+    height: 300px;        /* 高度300像素 */
+    margin: 0 0 14px 14px;/* 下/左外边距14像素，隔开卡片 */
+    background: #fff;     /* 卡片背景白色 */
+    padding: 20px 0;      /* 上下内边距20像素，内容不贴边 */
+    box-sizing: border-box;/* 盒模型：宽度包含边框 */
+    float: left;          /* 卡片并排显示 */
+    transition: all 0.2s linear;/* 样式变化0.2秒过渡，hover更丝滑 */
+}
+.item:hover{
+    transform: translateY(-2px);/* 鼠标放到卡片上，往上挪2像素（上浮） */
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1);/* 加阴影，更立体 */
+}
+
+/* 服装*/.item-img-clothes{
+    width: 234px;         /* 服装商品图片宽度234像素（占满卡片） */
+    margin-bottom: 2px;   /* 图片下外边距2像素，和文字隔开 */
+}
+
+.item-img{
+    width: 160px;         /* 通用商品图片宽度160像素 */
+    margin-bottom: 19px;  /* 图片下外边距19像素，和文字隔开 */
+}
+.item-name{
+    width: 214px;         /* 商品名称宽度214像素 */
+    height: 21px;         /* 高度21像素 */
+    color: #333;          /* 名称深灰色 */
+    line-height: 21px;    /* 行高21像素，垂直居中 */
+    margin: 0 auto 2px;   /* 左右居中，下外边距2像素 */
+}
+
+/* 服装*/.item-desc-clothes{
+    width: 214px;         /* 服装商品描述宽度214像素 */
+    height: 10px;         /* 高度10像素 */
+    color: #b0b0b0;       /* 描述浅灰色（次要信息） */
+    font-size: 12px;      /* 描述12像素 */
+    line-height: 18px;    /* 行高18像素 */
+    margin: 0 auto 10px;  /* 左右居中，下外边距10像素 */
+}
+
+.item-desc{
+    width: 214px;         /* 通用商品描述宽度214像素 */
+    height: 18px;         /* 高度18像素 */
+    color: #b0b0b0;       /* 描述浅灰色（次要信息） */
+    font-size: 12px;      /* 描述12像素 */
+    line-height: 18px;    /* 行高18像素，垂直居中 */
+    margin: 0 auto 10px;  /* 左右居中，下外边距10像素 */
+}
+
+.item-price{
+    color: #ff6700;       /* 商品价格橙色，突出显示 */
+    font-size: 14px;      /* 价格14像素 */
+}
+
+.big-img{
+    width: 100%;          /* 大图片占位宽度占满 */
+    height: 0px;          /* 高度0，隐藏 */
+    margin: 22px 0;       /* 上下外边距22像素 */
+}
+/* 手机模块 end */
+
+/* 家电模块：控制家电商品展示卡片的样式（基于手机模块微调） */
+/* 家电模块 start */
+.elc-box{
+    width: 100%;          /* 家电商品总盒子宽度占满 */
+    height: 614px;        /* 高度614像素 */
+}
+.elc-item{
+    padding: 0;           /* 家电卡片内边距0（图片占满） */
+    margin-left: 0;       /* 左边距0，对齐 */
+}
+.item-price>del{
+    color: #b0b0b0;       /* 家电原价（删除线）浅灰色，区分现价 */
+    margin-left: 5px;     /* 原价左边距5像素，和现价隔开 */
+}
+.item-last{
+    width: 234px;         /* 家电模块最后一个卡片宽度234像素 */
+    /* 614  300 600 14 */
+    height: 300px;        /* 高度300像素 */
+    float: left;          /* 卡片并排显示 */
+    margin-left: 14px;    /* 左边距14像素，和其他卡片隔开 */
+}
+.item-last div{
+    width: 234px;         /* 最后一个卡片里的小盒子宽度234像素 */
+    /* 286  14 */
+    height: 143px;        /* 小盒子高度143像素 */
+    background-color: #fff;/* 小盒子背景白色 */
+    transition: all 0.2s linear;/* 样式变化0.2秒过渡，hover丝滑 */
+}
+.item-last>div:first-child{
+    margin-bottom: 14px;  /* 第一个小盒子下外边距14像素，和第二个隔开 */
+}
+.item-last>div:hover{
+    transform: translateY(-2px);/* 鼠标放到小盒子上，往上挪2像素（上浮） */
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1);/* 加阴影，更立体 */
+}
+/* 家电模块 end */
+
+/* 视频模块：控制视频推荐区域的样式 */
+/* 视频模块 start */
+.video-box{
+    width: 100%;          /* 视频模块总盒子宽度占满 */
+    height: 299px;        /* 高度299像素 */
+}
+
+.video-box>div{
+    width: 296px;         /* 每个视频卡片宽度296像素 */
+    height: 285px;        /* 高度285像素 */
+    background-color: #fff;/* 卡片背景白色 */
+    float: left;          /* 卡片并排显示 */
+    margin-bottom: 14px;  /* 下外边距14像素 */
+    margin-right: 14px;   /* 右外边距14像素，隔开卡片 */
+    transition: all 0.2s linear;/* 样式变化0.2秒过渡，hover丝滑 */
+}
+
+.video-box>div:last-child{
+    margin-right: 0;      /* 最后一个视频卡片右外边距0，不超出屏幕 */
+}
+
+.video-box>div:hover{
+    transform: translateY(-2px);/* 鼠标放到卡片上，往上挪2像素（上浮） */
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1);/* 加阴影，更立体 */
+}
+.video-img{
+    width: 100%;          /* 视频封面图片盒子宽度占满 */
+    height: 180px;        /* 高度180像素 */
+    margin-bottom: 28px;  /* 下外边距28像素，和文字隔开 */
+    position: relative;   /* 开启定位，给播放按钮定位 */
+}
+.btn{
+    width: 32px;          /* 播放按钮外框宽度32像素 */
+    height: 20px;         /* 外框高度20像素 */
+    border-radius: 12px;  /* 圆角12像素，按钮变椭圆 */
+    border: 2px solid #fff;/* 外框边框2像素白色 */
+    position: absolute;   /* 绝对定位，相对于视频封面 */
+    left: 20px;           /* 左边距20像素 */
+    bottom: 10px;         /* 下边距10像素 */
+}
+.sanjiao{
+    width: 0;             /* 宽度0，用边框做播放三角 */
+    height: 0;            /* 高度0，用边框做播放三角 */
+    border-left: 8px solid #fff;/* 左边框8像素白色（三角主体） */
+    border-top: 6px solid transparent;/* 上边框透明（三角斜边） */
+    border-bottom: 6px solid transparent;/* 下边框透明（三角斜边） */
+    margin: 5px auto;     /* 上下外边距5像素，左右居中 */
+}
+.video-name{
+    color: #333;          /* 视频名称深灰色 */
+    font-size: 14px;      /* 名称14像素 */
+    width: 285px;         /* 名称宽度285像素 */
+    height: 21px;         /* 高度21像素 */
+    margin: 0 auto 6px;   /* 左右居中，下外边距6像素 */
+}
+.video-desc{
+    width: 285px;         /* 视频描述宽度285像素 */
+    height: 18px;         /* 高度18像素 */
+    margin: 0 auto;       /* 左右居中 */
+    color: #b0b0b0;       /* 描述浅灰色（次要信息） */
+    font-size: 12px;      /* 描述12像素 */
+}
+.video-img:hover .btn{
+    background: #ff6700;  /* 鼠标放到封面，按钮背景变橙色 */
+    border-color:#ff6700; /* 按钮边框变橙色 */
+}
+/* 视频模块 end */
+
+/* 页脚模块：控制页面最底部（服务/客服/版权）的样式 */
+/* 页脚模块 start */
+.footer-service{
+    width: 100%;          /* 页脚服务栏宽度占满屏幕 */
+    height: 25px;         /* 高度25像素 */
+    line-height: 25px;    /* 行高25像素，文字垂直居中 */
+    padding: 27px 0;      /* 上下内边距27像素，调整高度 */
+    border-bottom: 1px solid #e0e0e0;/* 底部边框1像素浅灰色（分隔线） */
+}
+.footer-service li{
+    float: left;          /* 服务栏列表项并排显示 */
+    width: 20%;           /* 宽度20%，5个项平分屏幕 */
+    border-right: 1px solid #b0b0b0;/* 右边框1像素浅灰色（分隔符） */
+    box-sizing: border-box;/* 盒模型：宽度包含边框 */
+}
+.footer-service li:last-child{
+    border-right: 0;      /* 最后一个列表项去掉右边框，不超出 */
+}
+.footer-service i{
+    font-size: 24px;      /* 服务栏图标24像素 */
+    margin-right: 6px;    /* 图标右边距6像素，和文字隔开 */
+}
+.footer-service a{
+    color: #616161;       /* 服务栏链接中灰色 */
+}
+.footer-service a:hover{
+    color: #ff6700;       /* 鼠标放到链接上，变橙色 */
+}
+.footer-link{
+    width: 100%;          /* 页脚链接区宽度占满 */
+    height: 172px;        /* 高度172像素 */
+    padding: 40px 0;      /* 上下内边距40像素，调整位置 */
+}
+.footer-link ul{
+    float: left;          /* 链接列表并排显示 */
+    width: 160px;         /* 每个列表宽度160像素 */
+    text-align: left;     /* 文字左对齐 */
+    color: #424242;       /* 列表标题深灰色 */
+    font-size: 14px;      /* 标题14像素 */
+    line-height: 1.25;    /* 行高1.25，文字紧凑 */
+}
+.footer-link ul a{
+    font-size: 12px;      /* 链接文字12像素 */
+    color: #757575;       /* 链接浅灰色 */
+}
+.footer-link ul li{
+    margin-top: 10px;     /* 列表项上外边距10像素，隔开 */
+}
+.footer-aside{
+    width: 250px;         /* 页脚右侧客服区宽度250像素 */
+    height: 111px;        /* 高度111像素 */
+    border-left: 1px solid #e0e0e0;/* 左边框1像素浅灰色（分隔符） */
+    float: right;         /* 客服区靠右边显示 */
+    color: #616161;       /* 文字中灰色 */
+}
+
+.footer-aside .tel{
+    font-size: 22px;      /* 客服电话22像素 */
+    line-height: 22px;    /* 行高22像素 */
+    color: #ff6700;       /* 电话橙色，突出显示 */
+    margin-bottom: 5px;   /* 下外边距5像素，和时间隔开 */
+}
+.footer-aside .time{
+    font-size: 12px;      /* 客服时间12像素 */
+    margin-bottom: 5px;   /* 下外边距5像素，和按钮隔开 */
+}
+.kefu{
+    display: block;       /* 块级元素，独占一行 */
+    width: 120px;         /* 客服按钮宽度120像素 */
+    height: 30px;         /* 高度30像素 */
+    line-height: 30px;    /* 行高30像素，文字垂直居中 */
+    border: 1px solid #ff6700;/* 按钮边框1像素橙色 */
+    box-sizing: border-box;/* 盒模型：宽度包含边框 */
+    margin: 0 auto;       /* 左右居中 */
+    color: #ff6700;       /* 按钮文字橙色 */
+    font-size: 12px;      /* 文字12像素 */
+    transition: all 0.4s; /* 样式变化0.4秒过渡，hover丝滑 */
+}
+.kefu:hover{
+    background: #ff6700;  /* 鼠标放到按钮上，背景变橙色 */
+    border-color: #ff6700;/* 边框变橙色 */
+    color: #fff;          /* 文字变白 */
+}
+
+.follow{
+    font-size: 12px;      /* “关注我们”文字12像素 */
+    margin-top: 10px;     /* 上外边距10像素，和按钮隔开 */
+}
+
+.follow img{
+    width: 24px;          /* 关注二维码图片宽度24像素 */
+    margin-left: 6px;     /* 左边距6像素，和文字隔开 */
+    position: relative;   /* 开启定位，微调位置 */
+    top: 7px;             /* 往上挪7像素，对齐文字 */
+}
+/* 页脚模块 end */

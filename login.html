@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>登录 / 注册</title>
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/mi.css">
+    <link rel="stylesheet" href="./css/login.css">
+    <style>/* minimal fallback if login.css missing */</style>
+</head>
+<body>
+<div class="login-page">
+    <div class="login-box">
+        <div class="tabs">
+            <button id="tab-login" class="active">登录</button>
+            <button id="tab-register">注册</button>
+        </div>
+        <div class="forms">
+            <form id="form-login" class="form active" autocomplete="off">
+                <div class="field">
+                    <label>用户名（邮箱）</label>
+                    <input type="text" id="login-username" placeholder="请输入邮箱地址" required>
+                    <div class="hint" id="hint-login-username"></div>
+                </div>
+                <div class="field">
+                    <label>密码</label>
+                    <input type="password" id="login-password" placeholder="请输入密码" required>
+                    <div class="hint" id="hint-login-password"></div>
+                </div>
+                <div class="actions">
+                    <button type="submit" class="primary">登录</button>
+                </div>
+                <div class="result" id="login-result"></div>
+            </form>
+
+            <form id="form-register" class="form" autocomplete="off">
+                <div class="field">
+                    <label>用户名（邮箱）</label>
+                    <input type="text" id="reg-username" placeholder="请输入邮箱地址" required>
+                    <div class="hint" id="hint-reg-username"></div>
+                </div>
+                <div class="field">
+                    <label>密码</label>
+                    <input type="password" id="reg-password" placeholder="至少6位" required>
+                    <div class="hint" id="hint-reg-password"></div>
+                </div>
+                <div class="field">
+                    <label>确认密码</label>
+                    <input type="password" id="reg-password2" placeholder="再次输入密码" required>
+                    <div class="hint" id="hint-reg-password2"></div>
+                </div>
+                <div class="actions">
+                    <button type="submit" class="primary">注册</button>
+                </div>
+                <div class="result" id="reg-result"></div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="./js/login.js"></script>
+</body>
+</html>

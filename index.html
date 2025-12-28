@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/mi.css">
+    <link rel="stylesheet" href="./css/iconfont/iconfont.css">
+    <style>
+        /* 保持原有布局的轻量轮播样式（不覆盖全局 wrap） */
+        .banner .carousel { position: relative; overflow: hidden; }
+        .banner .carousel-track { display: flex; transition: transform 0.5s ease; width: 100%; }
+        .banner .carousel-slide { min-width: 100%; box-sizing: border-box; }
+        .banner .carousel-slide img { width: 100%; display: block; }
+        .banner .carousel-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.35); color: #fff; border: none; padding: 10px 12px; border-radius: 50%; cursor: pointer; z-index: 20; }
+        .banner .carousel-btn.prev { left: 8px; }
+        .banner .carousel-btn.next { right: 8px; }
+        .banner .carousel-dots { position: absolute; left: 50%; transform: translateX(-50%); bottom: 12px; display: flex; gap: 8px; z-index: 20; }
+        .banner .carousel-dot { width: 10px; height: 10px; border-radius: 50%; background: rgba(255,255,255,0.6); cursor: pointer; border: none; }
+        .banner .carousel-dot.active { background: #fff; }
+        /* 保持原有菜单 (.slide) 在轮播旁边：将 .slide 放到左侧（使用 row-reverse） */
+        .banner > .wrap { display: flex; flex-direction: row-reverse; align-items: flex-start; gap: 18px; }
+        .banner .carousel { order: 2; flex: 1 1 auto; min-width: 0; }
+        .banner .slide { order: 1; width: 260px; flex: 0 0 260px; height: 406px; z-index: 30; }
+        /* 在窄屏恢复堆叠，以避免布局溢出 */
+        @media (max-width: 980px) {
+            .banner > .wrap { display: block; }
+            .banner .slide { width: 100%; flex: none; margin-top: 10px; }
+        }
+        @media (max-width:640px){ .banner .carousel-btn{ padding:8px } }
+    </style>
+</head>
+
+<body>
+
+    <!-- 顶部广告 start -->
+    <div class="header">
+        <a href="#">
+            <img src="./images/top.jpg" alt="ad">
+        </a>
+    </div>
+    <!-- 顶部广告 end -->
+
+    <!-- 黑色导航 start -->
+    <div class="black-nav">
+        <div class="wrap">
+            <ul class="black-nav-left">
+                <li><a href="#">网上商城</a><span>|</span></li>
+				<li><a href="#">排行榜</a><span>|</span></li>
+                <li><a href="#">商城直播</a><span>|</span></li>
+                <li><a href="#">咸鱼集市</a><span>|</span></li>
+                
+                <li><a href="#">国际商品</a><span>|</span></li>
+                <li><a href="#">新品</a><span>|</span></li>
+                <li><a href="#">数码</a><span>|</span></li>
+                <li><a href="#">企业团购</a><span>|</span></li>
+                <li><a href="#">资质证明</a><span>|</span></li>
+                <li><a href="#">协议规则</a><span>|</span></li>
+                <li>
+                    <a href="#">下载APP</a>
+                    <span>|</span>
+                    <div class="download">
+                        <img src="./images/download.png" alt="">
+                        <p>小米商城APP</p>
+                    </div>
+                    <div class="stri"></div>
+                </li>
+                <li><a href="#">智能生活</a><span>|</span></li>
+                <li><a href="#">SelectLocation</a><span>|</span></li>
+            </ul>
+            <ul class="black-nav-right">
+                <li><a href="login.html">登录</a><span>|</span></li>
+                <li><a href="login.html">注册</a><span>|</span></li>
+                <li><a href="#">消息通知</a><span>|</span></li>
+                <li class="cart">
+                    <a href="#">
+                        <i class="iconfont">&#xe607;</i>
+                        <i>购物车（0）</i>
+                    </a>
+                    <div class="cart-list">
+                        购物车中还没有商品，赶紧选购吧
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!-- 黑色导航 end -->
+
+    <!-- 白色导航 start -->
+    <div class="white-nav">
+        <div class="wrap">
+            <div class="logo">
+                <img src="./images/mi-home.png" alt="" class="mi-home">
+                <img src="./images/mi-logo.png" alt="" class="mi-logo">
+            </div>
+            <div class="nav-bar">
+                <ul>
+                    <li><a href="#"><img src="./images/zzxsh.gif" alt=""></a></li>
+                    <li>
+                        <a href="#">手机</a>
+                        <div class="nav-bar-list">
+                            <div class="wrap">
+                                <ul>
+                                    <li>
+                                        <a href="#">
+                                            <div class="img-box">
+                                                <img src="./images/phone.png" alt="">
+                                            </div>
+                                            <p class="name">Pure 60</p>
+                                            <p class="price">5200元</p>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <div class="img-box">
+                                                <img src="./images/phone.png" alt="">
+                                            </div>
+                                            <p class="name">Pure 60</p>
+                                            <p class="price">5200元</p>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <div class="img-box">
+                                                <img src="./images/phone.png" alt="">
+                                            </div>
+                                            <p class="name">Pure 60</p>
+                                            <p class="price">5200元</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+						<a href="#">食品</a>
+						</li>
+					<li><a href="#">家电</a></li>
+                    <li><a href="#">服装</a></li>
+                    <li><a href="#">办公文具</a></li>
+					<li><a href="#">出行 穿戴</a></li>
+                    <li><a href="#">服务</a></li>
+                    <li><a href="#">社区</a></li>
+                </ul>
+            </div>
+            <div class="search">
+                <input type="text" placeholder="九折不打烊">
+                <button class="iconfont">&#xe63d;</button>
+            </div>
+        </div>
+    </div>
+    <!-- 白色导航 end -->
+
+    <!-- Banner start -->
+    <div class="banner">
+        <div class="wrap">
+            <!-- 轮播图（保留原有 .slide 菜单布局） -->
+            <div class="carousel" id="bannerCarousel">
+                <div class="carousel-track">
+                    <div class="carousel-slide">
+                        <a href="#"><img class="banner-img" src="./images/banner/fuzhuang-big11.jpg" alt="fuzhuang-big11"></a>
+                    </div>
+                    <div class="carousel-slide">
+                        <a href="#"><img class="banner-img" src="./images/banner/fuzhuang-big2.jpg" alt="fuzhuang-big2"></a>
+                    </div>
+                    <div class="carousel-slide">
+                        <a href="#"><img class="banner-img" src="./images/banner/fuzhuang-big3.jpg" alt="fuzhuang-big3"></a>
+                    </div>
+                </div>
+                <button class="carousel-btn prev" aria-label="上一张">‹</button>
+                <button class="carousel-btn next" aria-label="下一张">›</button>
+                <div class="carousel-dots" aria-hidden="false"></div>
+            </div>
+            <div class="slide">
+                <ul>
+                    <li>
+                        <a href="#">手机<i class="iconfont">&#xe621;</i></a>
+                        <div class="slide-list">
+                            <ul>
+                                <li>
+                                    <a href="#">
+                                        <img src="./images/banner/banner-手机.png" alt="">
+                                        <span>小米 MIX Alpha</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <img src="./images/banner/banner-手机2.png" alt="">
+                                        <span>Xiaomi 15 定制版</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <img src="./images/banner/banner-手机3.png" alt="">
+                                        <span>Xiaomi MIX Fold 3</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <img src="./images/banner/banner-手机.png" alt="">
+                                        <span>小米 MIX Alpha</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <img src="./images/banner/banner-手机2.png" alt="">
+                                        <span>Xiaomi 15 定制版</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <img src="./images/banner/banner-手机3.png" alt="">
+                                        <span>Xiaomi MIX Fold 3</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="#">电视<i class="iconfont">&#xe621;</i></a>
+                        <div class="slide-list">
+                            <ul>
+                                <li>
+                                    <a href="#">
+                                        <img src="./images/banner/banner-电视.png" alt="">
+                                        <span>电视</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <img src="./images/banner/banner-电视2.png" alt="">
+                                        <span>电视</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <img src="./images/banner/banner-电视3.png" alt="">
+                                        <span>电视</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <img src="./images/banner/banner-电视.png" alt="">
+                                        <span>电视</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <img src="./images/banner/banner-电视2.png" alt="">
+                                        <span>电视</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <img src="./images/banner/banner-电视3.png" alt="">
+                                        <span>电视</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+					<li><a href="#">食品<i class="iconfont">&#xe621;</i></a></li>
+                    <li><a href="#">家电<i class="iconfont">&#xe621;</i></a></li>
+                    <li><a href="#">笔记本 平板 显示器<i class="iconfont">&#xe621;</i></a></li>
+                    <li><a href="#">出行 穿戴<i class="iconfont">&#xe621;</i></a></li>
+                    <li><a href="#">耳机 音箱<i class="iconfont">&#xe621;</i></a></li>
+                    <li><a href="#">健康 儿童<i class="iconfont">&#xe621;</i></a></li>
+                    <li><a href="#">生活 箱包<i class="iconfont">&#xe621;</i></a></li>
+                    
+                    <li><a href="#">办公文具<i class="iconfont">&#xe621;</i></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- Banner end -->
+
+    <!-- 广告模块 start -->
+    <div class="ad">
+        <div class="wrap">
+            <div class="ad-aside">
+                <ul>
+                    <li>
+                        <a href="#">
+                            <i class="iconfont">&#xe733;</i>
+                            <p>优惠卡</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="iconfont">&#xe733;</i>
+                            <p>优惠卡</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="iconfont">&#xe733;</i>
+                            <p>优惠卡</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="iconfont">&#xe733;</i>
+                            <p>优惠卡</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="iconfont">&#xe733;</i>
+                            <p>优惠卡</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="iconfont">&#xe733;</i>
+                            <p>优惠卡</p>
+                        </a>
+                    </li>
+                </ul> 
+            </div>
+            <div class="ad-img">
+                <a href="#"><img src="./images/banner/ad-img-11-11.png" alt=""></a>
+            </div>
+            <div class="ad-img">
+                <a href="#"><img src="./images/banner/ad-img-33-3.png" alt=""></a>
+            </div>
+            <div class="ad-img">
+                <a href="#"><img src="./images/banner/ad-img-22-22.png" alt=""></a>
+            </div>
+        </div>
+    </div>
+    <!-- 广告模块 end -->
+
+    <!-- 内容模块 start -->
+    <div class="content">
+        <div class="wrap">
+			
+			<div class="elc">
+			    <h3 class="title">服装</h3>
+			    <div class="elc-box">
+					
+					<div class="item elc-item">	
+						<a href="#">
+							<img src="./images/banner/clothes-left11.png" alt="">
+						</a>		
+					</div>
+					
+			        <div class="item-clothes">
+			            <a href="#">
+			                <a href="商品详情/detail.html"><img class="item-img-clothes" src="./images/banner/clothes-right.png" alt=""></a>
+			                <p class="item-name">鲨鱼嘴棉服男外套秋冬</p>
+			                <p class="item-desc-clothes">鲨鱼嘴男女情侣毛绒棉衣</p>
+			                <p class="item-price">499元<del>599元</del></p>
+			            </a>
+			        </div>
+					
+			        <div class="item-clothes">
+			            <a href="#">
+			                <a href="商品详情/detail-2.html"><img class="item-img-clothes" src="./images/banner/clothes-right2.png" alt=""></a>
+			                <p class="item-name">冬季鲨鱼嘴毛绒棉服外套</p>
+			                <p class="item-desc-clothes">连帽保暖高领拼接棉衣</p>
+			                <p class="item-price">399<del>699元</del></p>
+			            </a>
+			        </div>
+			        <div class="item-clothes">
+			            <a href="#">
+			                 <a href="商品详情/detail-3.html"><img class="item-img-clothes" src="./images/banner/clothes-right33.png" alt=""></a>
+			                <p class="item-name">ARDENCODE皮夹克外套</p>
+			                <p class="item-desc-clothes">男女款无限连帽M8版型</p>
+			                <p class="item-price">1027元<del>1350元</del></p>
+			            </a>
+			        </div>
+			        <div class="item-clothes">
+			            <a href="#">
+			                <img class="item-img-clothes" src="./images/banner/clothes-right4.png" alt="">
+			                <p class="item-name">蛇衣服红色仿貂毛针织衫男</p>
+			                <p class="item-desc-clothes">GUUKA情侣刺绣毛衣女宽松</p>
+			                <p class="item-price">249元<del>269元</del></p>
+			            </a>
+			        </div>
+			        <div class="item elc-item">
+			            <a href="#">
+			                <img src="./images/banner/clothes-left22.png" alt="">
+			            </a>
+			        </div>
+			        <div class="item-clothes">
+			            <a href="#">
+			                <img class="item-img-clothes" src="./images/banner/clothes-right5.png" alt="">
+			                <p class="item-name">晴棉圆领毛衣男 坏学生二次元</p>
+			                <p class="item-desc-clothes">GUUKA加厚针织衫女宽松</p>
+			                <p class="item-price">299元<del>249元</del></p>
+			            </a>
+			        </div>
+			        <div class="item-clothes">
+			            <a href="#">
+			                <img class="item-img-clothes" src="./images/banner/clothes-right6.png" alt="">
+			                <p class="item-name">毛绒外套男冬季保暖夹克</p>
+			                <p class="item-desc-clothes">加厚宽松连帽情侣上衣</p>
+			                <p class="item-price">359元<del>399元</del></p>
+			            </a>
+			        </div>
+			        <div class="item-clothes">
+			            <a href="#">
+			                <img class="item-img-clothes" src="./images/banner/clothes-right7.png" alt="">
+			                <p class="item-name">SprayGround2024满印鲨鱼嘴棉服</p>
+			                <p class="item-desc-clothes">毛毛外套男女连帽情侣款</p>
+			                <p class="item-price">499元<del>1199元</del></p>
+			            </a>
+			        </div>
+			        <div class="item-last">
+			            <div></div>
+			            <div>
+							<img class="item-img" src="./images/banner/TV-right9（下）.png" alt="">
+						</div>
+			        </div>
+			    </div>
+			    <div class="big-img">
+			        <!--<a href="#">
+			            <img src="./images/phone_ad.jpg" alt="">
+			        </a>      --> 
+			    </div>       
+			</div>
+			<!-- 服装模块 end -->
+			
+			
+            <!-- 手机模块 start -->
+            <div class="phone">
+                <h3 class="title">手机</h3>
+                <div class="phone-box">
+                    <div class="phone-box-left">
+                        <a href="#">
+                            <img src="./images/phone_left.jpg" alt="">
+                        </a>
+                    </div>
+                    <div class="phone-box-right">
+                        <div class="item">
+                            <a href="#">
+                                <a href="商品详情/detail-4.html"><img class="item-img" src="./images/banner/phone-right1.png" alt=""></a>
+                                <p class="item-name">vivo S20 Pro</p>
+                                <p class="item-desc">120X 变焦/120W秒充/120Hz屏幕</p>
+                                <p class="item-price">3999元起</p>
+                            </a>
+                        </div>
+                        <div class="item">
+                            <a href="#">
+                                <img class="item-img" src="./images/banner/phone-right2.png" alt="">
+                                <p class="item-name">vivo Y200t</p>
+                                <p class="item-desc">120X 变焦/120W秒充/120Hz屏幕</p>
+                                <p class="item-price">1299元起</p>
+                            </a>
+                        </div>
+                        <div class="item">
+                            <a href="#">
+                                <img class="item-img" src="./images/banner/phone-right3.png" alt="">
+                                <p class="item-name">IQOO Z9 Turbo+</p>
+                                <p class="item-desc">120X 变焦/120W秒充/120Hz屏幕</p>
+                                <p class="item-price">2299元起</p>
+                            </a>
+                        </div>
+                        <div class="item">
+                            <a href="#">
+                                <img class="item-img" src="./images/banner/phone-right4(修改).png" alt="">
+                                <p class="item-name">Xiaomi MIX Alpha</p>
+                                <p class="item-desc">120X 变焦/120W秒充/120Hz屏幕</p>
+                                <p class="item-price">19999元起</p>
+                            </a>
+                        </div>
+                        <div class="item">
+                            <a href="#">
+                                <img class="item-img" src="./images/banner/phone-right5(修改).png" alt="">
+                                <p class="item-name">Redmi Note 12 5G</p>
+                                <p class="item-desc">120X 变焦/120W秒充/120Hz屏幕</p>
+                                <p class="item-price">999元起</p>
+                            </a>
+                        </div>
+                        <div class="item">
+                            <a href="#">
+                                <img class="item-img" src="./images/banner/phone-right6(修改).png" alt="">
+                                <p class="item-name">小米MIX Fold 3 MIX FOLD4</p>
+                                <p class="item-desc">120X 变焦/120W秒充/120Hz屏幕</p>
+                                <p class="item-price">5299元起</p>
+                            </a>
+                        </div>
+                        <div class="item">
+                            <a href="#">
+                                <img class="item-img" src="./images/banner/phone-right7(修改).png" alt="">
+                                <p class="item-name">华为 Mate 70 Pro</p>
+                                <p class="item-desc">120X 变焦/120W秒充/120Hz屏幕</p>
+                                <p class="item-price">5299元起</p>
+                            </a>
+                        </div>
+                        <div class="item">
+                            <a href="#">
+                                <img class="item-img" src="./images/banner/phone-right8(修改).png" alt="">
+                                <p class="item-name">华为 Mate 60</p>
+                                <p class="item-desc">120X 变焦/120W秒充/120Hz屏幕</p>
+                                <p class="item-price">5299元起</p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!--<div class="big-img">
+                    <a href="#">
+                        <img src="./images/phone_ad.jpg" alt="">
+                    </a>
+                </div>           -->
+            </div>
+            <!-- 手机模块 end -->
+            <!-- 家电模块 start -->
+            <div class="elc">
+                <h3 class="title">家电</h3>
+                <div class="elc-box">
+                    <div class="item elc-item">
+                        <a href="#">
+                            <img src="./images/banner/TV-left11.png" alt="">
+                        </a>
+                    </div>
+                    <div class="item">
+                        <a href="#">
+                            <img class="item-img" src="./images/banner/TV-right.png" alt="">
+                            <p class="item-name">小米电视 S Mini LED</p>
+                            <p class="item-desc">70英寸震撼巨屏，4K画质，细腻如真</p>
+                            <p class="item-price">2799元<del>2999元</del></p>
+                        </a>
+                    </div>
+                    <div class="item">
+                        <a href="#">
+                            <img class="item-img" src="./images/banner/TV-right2.png" alt="">
+                            <p class="item-name">小米电视S Pro Mini LED系列</p>
+                            <p class="item-desc">70英寸震撼巨屏，4K画质，细腻如真</p>
+                            <p class="item-price">4799<del>4999元</del></p>
+                        </a>
+                    </div>
+                    <div class="item">
+                        <a href="#">
+                            <img class="item-img" src="./images/banner/TV-right4.png" alt="">
+                            <p class="item-name">华为智能门锁 Pro 星际黑</p>
+                            <p class="item-desc"> AI 3D人脸识别，华为手机钱包钥匙开锁</p>
+                            <p class="item-price">3199元<del>3699元</del></p>
+                        </a>
+                    </div>
+                    <div class="item">
+                        <a href="#">
+                            <img class="item-img" src="./images/banner/TV-right5.png" alt="">
+                            <p class="item-name">巨省电 1.5匹新1级</p>
+                            <p class="item-desc">强劲制冷、高效节能、智能互联</p>
+                            <p class="item-price">2299元<del>2499元</del></p>
+                        </a>
+                    </div>
+                    <div class="item elc-item">
+                        <a href="#">
+                            <img src="./images/banner/TV-left22.png" alt="">
+                        </a>
+                    </div>
+                    <div class="item">
+                        <a href="#">
+                            <img class="item-img" src="./images/banner/TV-right3.png" alt="">
+                            <p class="item-name">省电Pro 立式3匹 超一级能效</p>
+                            <p class="item-desc">强劲制冷、高效节能、智能互联</p>
+                            <p class="item-price">6299元<del>6499元</del></p>
+                        </a>
+                    </div>
+                    <div class="item">
+                        <a href="#">
+                            <img class="item-img" src="./images/banner/TV-right6.png" alt="">
+                            <p class="item-name">华为路由 BE3 Pro</p>
+                            <p class="item-desc">Wi-Fi 7 3600Mbps 双Wi-Fi连网</p>
+                            <p class="item-price">259元<del>399元</del></p>
+                        </a>
+                    </div>
+                    <div class="item">
+                        <a href="#">
+                            <img class="item-img" src="./images/banner/TV-right7.png" alt="">
+                            <p class="item-name">华为随行WiFi 5 青色</p>
+                            <p class="item-desc">70英寸震撼巨屏，4K画质，细腻如真</p>
+                            <p class="item-price">3199元<del>3799元</del></p>
+                        </a>
+                    </div>
+                    <div class="item-last">
+                        <div></div>
+                        <div>
+							<img class="item-img" src="./images/banner/TV-right9（下）.png" alt="">
+						</div>
+                    </div>
+                </div>
+                <div class="big-img">
+                    <!--<a href="#">
+                        <img src="./images/phone_ad.jpg" alt="">
+                    </a>      --> 
+                </div>  
+            </div>
+            <!-- 家电模块 end -->
+            <!-- 视频模块 start -->
+            <div class="video">
+                <h3 class="title">视频</h3>
+                <div class="video-box">
+                    <div>
+                        <div class="video-img">
+                            <img src="./images/banner/d-shipin11.png" alt="">
+                            <div class="btn">
+                                <div class="sanjiao"></div>
+                            </div>
+                        </div>
+                        <p class="video-name">北京西单</p>
+                        <p class="video-desc">SprayGround旗舰</p>
+                    </div>
+                    <div>
+                        <div class="video-img">
+                            <img src="./images/banner/d-shipin22.png" alt="">
+                            <div class="btn">
+                                <div class="sanjiao"></div>
+                            </div>
+                        </div>
+                        <p class="video-name">安徽之心城</p>
+                        <p class="video-desc">SprayGround旗舰</p>
+                    </div>
+                    <div>
+                        <div class="video-img">
+                            <img src="./images/banner/d-shipin33.png" alt="">
+                            <div class="btn">
+                                <div class="sanjiao"></div>
+                            </div>
+                        </div>
+                        <p class="video-name">杭州湖滨银泰</p>
+                        <p class="video-desc">SprayGround旗舰</p>
+                    </div>
+                    <div>
+                        <div class="video-img">
+                            <img src="./images/banner/d-shipin44.png" alt="">
+                            <div class="btn">
+                                <div class="sanjiao"></div>
+                            </div>
+                        </div>
+                        <p class="video-name">上海万象城</p>
+                        <p class="video-desc">SprayGround旗舰</p>
+                    </div>
+                </div>
+            </div>
+            <!-- 视频模块 end -->
+        </div>
+    </div>
+    <!-- 内容模块 end -->
+
+    <!-- 页脚模块 start -->
+    <div class="footer">
+        <div class="wrap">
+            <div class="footer-service">
+                <ul>
+                    <li>
+                        <a href="#">
+                            <i class="iconfont">&#xe629;</i>
+                            <span>售后服务</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="iconfont">&#xe629;</i>
+                            <span>售后服务</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="iconfont">&#xe629;</i>
+                            <span>售后服务</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="iconfont">&#xe629;</i>
+                            <span>售后服务</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="iconfont">&#xe629;</i>
+                            <span>售后服务</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="footer-link">
+                <ul>
+                    <li>帮助中心</li>
+                    <li><a href="#">账户管理</a></li>
+                    <li><a href="#">账户管理</a></li>
+                    <li><a href="#">账户管理</a></li>
+                </ul>
+                <ul>
+                    <li>帮助中心</li>
+                    <li><a href="#">账户管理</a></li>
+                    <li><a href="#">账户管理</a></li>
+                    <li><a href="#">账户管理</a></li>
+                </ul>
+                <ul>
+                    <li>帮助中心</li>
+                    <li><a href="#">账户管理</a></li>
+                    <li><a href="#">账户管理</a></li>
+                    <li><a href="#">账户管理</a></li>
+                </ul>
+                <ul>
+                    <li>帮助中心</li>
+                    <li><a href="#">账户管理</a></li>
+                    <li><a href="#">账户管理</a></li>
+                    <li><a href="#">账户管理</a></li>
+                </ul>
+                <ul>
+                    <li>帮助中心</li>
+                    <li><a href="#">账户管理</a></li>
+                    <li><a href="#">账户管理</a></li>
+                    <li><a href="#">账户管理</a></li>
+                </ul>
+                <ul>
+                    <li>帮助中心</li>
+                    <li><a href="#">账户管理</a></li>
+                    <li><a href="#">账户管理</a></li>
+                    <li><a href="#">账户管理</a></li>
+                </ul>
+                <div class="footer-aside">
+                    <p class="tel">400-100-5678</p>
+                    <p class="time">8:00-18:00（仅收市话费）</p>
+                    <a href="#" class="kefu">人工客服</a>
+                    <div class="follow">
+                        关注商城:
+                        <img src="./images/wb.png" alt="">
+                        <img src="./images/wx.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 页脚模块 end -->
+
+    <script>
+        (function(){
+            const carousel = document.getElementById('bannerCarousel');
+            if(!carousel) return;
+            const track = carousel.querySelector('.carousel-track');
+            const slides = Array.from(track.children);
+            const prev = carousel.querySelector('.carousel-btn.prev');
+            const next = carousel.querySelector('.carousel-btn.next');
+            const dotsWrap = carousel.querySelector('.carousel-dots');
+            let index = 0;
+            const count = slides.length;
+
+            // create dots
+            slides.forEach((_, i)=>{
+                const b = document.createElement('button');
+                b.className = 'carousel-dot' + (i===0? ' active':'');
+                b.setAttribute('aria-label','切换到第'+(i+1)+'张');
+                b.addEventListener('click', ()=>{ goTo(i); resetTimer(); });
+                dotsWrap.appendChild(b);
+            });
+            const dots = Array.from(dotsWrap.children);
+
+            function update(){
+                track.style.transform = 'translateX(' + (-index*100) + '%)';
+                dots.forEach((d,i)=> d.classList.toggle('active', i===index));
+            }
+            function goTo(i){ index = (i%count+count)%count; update(); }
+            prev.addEventListener('click', ()=>{ goTo(index-1); resetTimer(); });
+            next.addEventListener('click', ()=>{ goTo(index+1); resetTimer(); });
+
+            // autoplay（优化：确保单一 timer，2s 切换，后台标签页暂停）
+            let timer = null;
+            function start(){
+                if(timer) clearInterval(timer);
+                timer = setInterval(()=> goTo(index+1), 2000);
+            }
+            function resetTimer(){ if(timer) clearInterval(timer); start(); }
+            carousel.addEventListener('mouseenter', ()=> { if(timer) clearInterval(timer); });
+            carousel.addEventListener('mouseleave', ()=> start());
+            document.addEventListener('visibilitychange', ()=>{
+                if(document.hidden){ if(timer) clearInterval(timer); }
+                else start();
+            });
+
+            // init
+            update(); start();
+        })();
+    </script>
+
+</body>
+
+</html>
